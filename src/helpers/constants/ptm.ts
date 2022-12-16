@@ -12,6 +12,7 @@ const PLAYER_VIEWS = {
   GUESSING: "guessing",
   START_GAME: "startGame",
   WAITING: "waiting",
+  SCORE: "score",
 };
 
 export { HOST_VIEWS, PLAYER_VIEWS };

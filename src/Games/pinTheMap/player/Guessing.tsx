@@ -6,18 +6,6 @@ import { game } from "../../../store/ptnStore";
 
 const styles = [
   {
-    featureType: "landscape.man_made",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        visibility: "off",
-      },
-      {
-        gamma: "1.19",
-      },
-    ],
-  },
-  {
     elementType: "labels",
     stylers: [
       {
@@ -35,6 +23,33 @@ const styles = [
     ],
   },
   {
+    featureType: "administrative.country",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#a79a20",
+      },
+      {
+        visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "administrative.country",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        color: "#726d40",
+      },
+      {
+        visibility: "on",
+      },
+      {
+        weight: 2.5,
+      },
+    ],
+  },
+  {
     featureType: "administrative.land_parcel",
     stylers: [
       {
@@ -43,10 +58,21 @@ const styles = [
     ],
   },
   {
-    featureType: "administrative.neighborhood",
+    featureType: "landscape.man_made",
     stylers: [
       {
         visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "landscape.natural",
+    stylers: [
+      {
+        color: "#1ddd67",
+      },
+      {
+        visibility: "on",
       },
     ],
   },
@@ -87,7 +113,7 @@ const styles = [
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCRXvEwPNT-qbn3-rrLSnD-ti7jhchbXUI",
+    googleMapsApiKey: import.meta.env.PUBLIC_GOOGLE_MAPS_API,
   });
 
   const gameObj = useStore(game);
@@ -128,7 +154,7 @@ export default function Home() {
           disableDefaultUI: true,
         }}
       >
-        <Marker position={latLang} />
+        <Marker position={{ lat: latLang.latitude, lng: latLang.longitude }} />
       </GoogleMap>
       <button
         style={{
