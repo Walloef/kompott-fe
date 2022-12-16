@@ -2,17 +2,18 @@ import { useStore } from "@nanostores/react";
 import { HOST_VIEWS } from "../../../helpers/constants/ptm";
 import { updateGameState, game } from "../../../store/ptnStore";
 
-const StartGame = () => {
-  const x = useStore(game);
-  console.log(x.players);
+const StartGame = ({ gameId }: { gameId: string | undefined }) => {
+  const gameObj = useStore(game);
+
   return (
     <div>
       <h1>Pin the map start game!</h1>
+      <p>{gameId}</p>
+      {gameObj.players && gameObj.players.map((x) => <p>{x}</p>)}
       <button
         onClick={() => {
-          console.log("löasdkölas");
           updateGameState({
-            ...x,
+            ...gameObj,
             hostView: HOST_VIEWS.TIMER,
           });
         }}

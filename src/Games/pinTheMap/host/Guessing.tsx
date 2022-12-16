@@ -1,5 +1,10 @@
+import { useStore } from "@nanostores/react";
+import { game } from "../../../store/ptnStore";
+
 const Guessing = () => {
-  return <div>Guessing</div>;
+  const gameObj = useStore(game);
+
+  return <div>{gameObj.city}</div>;
 };
 
 export default Guessing;

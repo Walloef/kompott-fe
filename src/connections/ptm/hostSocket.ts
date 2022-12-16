@@ -11,10 +11,6 @@ declare global {
   }
 }
 
-// export const x = () => {
-//   console.log("from store", game.get().hostView);
-// };
-
 export function connectHost() {
   const url = "https://pinthemapbaseapp.azurewebsites.net/gamehub?host=true";
   window.connection = new HubConnectionBuilder()
@@ -24,13 +20,9 @@ export function connectHost() {
     })
     .build();
   window.connection.on("ClientMessage", (event: any) => {
-    console.log("logs from hostSocket:");
-    console.log(event);
-    console.log("end of logs from hostSocket:");
     switch (event.name) {
-      case "PlayerConnected":
-        console.log("playerConnected", event.payload);
-        addPlayer(event.payload);
+      case "Connected":
+        addPlayer(event.payload.name);
         break;
       case "StateUpdate":
         updateGameState({ hostView: event.payload });

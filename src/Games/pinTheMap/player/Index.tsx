@@ -4,7 +4,7 @@ import Guessing from "./Guessing";
 import StartGame from "./StartGame";
 import Waiting from "./Waiting";
 
-import { game, updateGameState } from "../../../store/ptnStore";
+import { game } from "../../../store/ptnStore";
 import { PLAYER_VIEWS } from "../../../helpers/constants/ptm";
 import { useStore } from "@nanostores/react";
 
@@ -13,6 +13,7 @@ const Index = () => {
 
   return (
     <>
+      {/* <Guessing /> */}
       {gameObj.playerView === PLAYER_VIEWS.CONNECT && <Connect />}
       {gameObj.playerView === PLAYER_VIEWS.FINAL_SCORE && <FinalScore />}
       {gameObj.playerView === PLAYER_VIEWS.GUESSING && <Guessing />}

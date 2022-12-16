@@ -4,7 +4,7 @@ import Score from "./Score";
 import StartGame from "./StartGame";
 import Timer from "./Timer";
 import { useStore } from "@nanostores/react";
-import { game, updateGameState } from "../../../store/ptnStore";
+import { game } from "../../../store/ptnStore";
 import { HOST_VIEWS } from "../../../helpers/constants/ptm";
 import { useEffect } from "react";
 import { connectHost } from "../../../connections/ptm/hostSocket";
@@ -23,7 +23,9 @@ const Index = () => {
 
       {gameObj.hostView === HOST_VIEWS.GUESSING ? <Guessing /> : null}
       {gameObj.hostView === HOST_VIEWS.SCORE ? <Score /> : null}
-      {gameObj.hostView === HOST_VIEWS.START_GAME ? <StartGame /> : null}
+      {gameObj.hostView === HOST_VIEWS.START_GAME ? (
+        <StartGame gameId={gameObj.gameId} />
+      ) : null}
       {gameObj.hostView === HOST_VIEWS.TIMER ? <Timer /> : null}
     </>
   );

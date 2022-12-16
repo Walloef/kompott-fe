@@ -3,6 +3,7 @@ import {
   HttpTransportType,
   HubConnection,
 } from "@microsoft/signalr";
+import { PLAYER_VIEWS } from "../../helpers/constants/ptm";
 import { game, updateGameState } from "../../store/ptnStore";
 
 declare global {
@@ -27,15 +28,24 @@ export function connectPlayer(name: string, gameId: string) {
   window.connection.on("ClientMessage", (event: any) => {
     console.log(event);
     switch (event.name) {
-      case "PlayerConnected":
-        updateGameState({ firstPlayer: event.payload.firstPlayer });
+      case "Connected":
+        updateGameState({
+          firstPlayer: event.payload.firstPlayer,
+          gameId: gameId,
+        });
 
         if (event.payload.firstPlayer) {
-          updateGameState({ firstPlayerName: event.payload.firstPlayer });
+          updateGameState({
+            firstPlayer: event.payload.firstPlayer,
+            playerView: PLAYER_VIEWS.WAITING,
+            gameId: gameId,
+          });
         }
         break;
       case "StateUpdate":
-        updateGameState(event.payload);
+        updateGameState({
+          playerView: event.payload,
+        });
         break;
       default:
         console.log(event);

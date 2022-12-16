@@ -21,7 +21,6 @@ export type Game = {
   hostView?: string;
   playerView?: string;
   city?: string;
-  id?: string;
   round?: number;
   oldScore?: number;
   finalScore?: any;
@@ -42,7 +41,6 @@ export const game = atom<Game>({
   hostView: HOST_VIEWS.START_GAME,
   playerView: PLAYER_VIEWS.CONNECT,
   city: "",
-  id: "",
   round: 0,
   oldScore: 0,
   score: 0,
@@ -65,21 +63,23 @@ export function addPlayer(newPlayer: string) {
   const players =
     currPlayers !== undefined ? [...currPlayers, newPlayer] : [newPlayer];
   game.set({
-    ...game,
+    ...game.get(),
     players,
   });
+  console.log("currPlayers", currPlayers);
 }
 
 export function updateGameState(payload: Game) {
+  console.log(game.get());
   console.log(payload);
   if (game.get().round! > 0) {
     game.set({
-      ...game,
+      ...game.get(),
       ...payload,
     });
   } else {
     game.set({
-      ...game,
+      ...game.get(),
       ...payload,
       round: 0,
     });
