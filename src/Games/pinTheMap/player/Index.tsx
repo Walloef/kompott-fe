@@ -8,12 +8,14 @@ import { game } from "../../../store/ptnStore";
 import { PLAYER_VIEWS } from "../../../helpers/constants/ptm";
 import { useStore } from "@nanostores/react";
 import Score from "./Score";
+import heading from "../style/style.module.scss";
 
 const Index = () => {
   const gameObj = useStore(game);
 
   return (
     <>
+      <h1 className={heading.header}>aaa</h1>
       {/* <Guessing /> */}
       {gameObj.playerView === PLAYER_VIEWS.CONNECT && <Connect />}
       {gameObj.playerView === PLAYER_VIEWS.FINAL_SCORE && <FinalScore />}
