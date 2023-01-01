@@ -1,0 +1,16 @@
+.wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+
+  svg {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    transform: translateY(50%);
+    height: 100vw;
+    max-height: 800px;
+    fill: #f0e4cd;
+  }
+}

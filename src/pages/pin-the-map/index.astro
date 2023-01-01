@@ -2,18 +2,27 @@
 import Heading from '../../Games/pinTheMap/generic/Heading';
 import Layout from '../../layouts/Layout.astro';
 import '../../Games/pinTheMap/style/default.scss';
+import Link from '../../Games/pinTheMap/generic/Link';
+import SvgEarth from '../../Games/pinTheMap/generic/SvgEarth';
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
+    
     <div class="wrapper">
-      <Heading client:idle text="Pin The map" />
-      <div>
-        <div>Random desc</div>
-        <a href="/pin-the-map/host"> Host game</a>
-
-        <a href="/pin-the-map/player"> Join game</a>
+      <Heading text="Pin The map" />
+      <div class="center">
+        <Link href="/pin-the-map/host" text="Host game" />
+        <Link href="/pin-the-map/player" text="Join game" />
+        
       </div>
+      
     </div>
   </main>
+  <SvgEarth />
 </Layout>
+<style lang="scss">
+  .center {
+    display: flex; justify-content: center;
+  }
+</style>
