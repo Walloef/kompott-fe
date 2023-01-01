@@ -1,20 +1,22 @@
-import { useState } from "react";
-import { connectPlayer } from "../../../connections/ptm/playerSocket";
+import { useState } from 'react';
+import { connectPlayer } from '../../../connections/ptm/playerSocket';
+import Heading from '../generic/Heading';
 
 const Connect = () => {
-  const [playerName, setPlayerName] = useState("");
-  const [gameId, setGameId] = useState("");
+  const [playerName, setPlayerName] = useState('');
+  const [gameId, setGameId] = useState('');
   const onsubmit = () => {
     console.table({ playerName, gameId });
     connectPlayer(playerName, gameId);
   };
   return (
-    <>
-      <p>
+    <div className="wrapper">
+      <Heading text="pin the map" />
+      {/* <p>
         hej
         {gameId}
         {playerName}
-      </p>
+      </p> */}
       <input
         placeholder="name"
         type="text"
@@ -30,7 +32,7 @@ const Connect = () => {
       <button type="button" onClick={onsubmit}>
         Join game
       </button>
-    </>
+    </div>
   );
 };
 
