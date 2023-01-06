@@ -3,12 +3,24 @@
   padding: 4rem 0 5rem;
   text-align: center;
   font-size: var(--heading-size);
-  font-family: 'Paytone One', sans-serif;
+  font-family: var(--font-family-default);
+
+  @media screen and (min-width: 568px) {
+    font-size: calc(
+      var(--heading-size) + 16 * calc((100vw - 568px) / (768 - 568))
+    ); //calc(32px + 16 * ((100vw - 568px) / (768 - 568));
+  }
+
+  /* Fixed maximum value above the maximum breakpoint */
+  @media screen and (min-width: 768px) {
+    font-size: var(--heading-size);
+    background: red;
+  }
 }
 
 .noDots {
   text-align: center;
-  font-family: 'Paytone One', sans-serif;
+  // font-family: var(--font-family-default);
   color: var(--light-color);
   text-shadow: -1px -1px var(--box-shadow), -1px -1.5px var(--box-shadow),
     -1px -1px var(--box-shadow), -1px -0.5px var(--box-shadow),

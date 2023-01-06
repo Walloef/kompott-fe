@@ -1,19 +1,5 @@
-.link {
-  // color: var(--box-shadow);
-  // font-family: 'Paytone One', sans-serif;
-  // text-decoration-color: var(--box-shadow);
-  // text-decoration-thickness: 2px;
+@import './linkBtn.scss';
 
-  text-shadow: 1px 1px var(--light-color), -1px 1px var(--light-color),
-    1px -1px var(--light-color), -1px -1px var(--light-color),
-    0 3px var(--light-color);
-  font-family: 'Paytone One', sans-serif;
-  font-size: 3rem;
-  position: relative;
-  padding: 0 24px 12px;
-  color: var(--box-shadow);
-  text-decoration-style: dotted;
-  text-underline-offset: 16px;
-  text-decoration-thickness: 4px;
-  transition: all 0.25s ease;
+.linkMargin {
+  @extend .linkBtnMargin;
 }

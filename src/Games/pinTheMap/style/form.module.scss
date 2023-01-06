@@ -1,0 +1,39 @@
+@import './linkBtn.scss';
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.input {
+  padding: var(--spacing-half);
+  width: calc(50% - var(--spacing-default));
+  margin: var(--spacing-half) var(--spacing-half) var(--spacing-default);
+  font-family: var(--font-family-default);
+  color: #3e3d3d;
+  text-align: center;
+  border: 1px solid var(--box-shadow);
+  background: none;
+  box-shadow: 4px 4px var(--box-shadow);
+  transition: all 0.5s ease;
+  outline: none;
+
+  &:first-child {
+    box-shadow: -4px 4px var(--box-shadow);
+  }
+
+  &::placeholder {
+    color: #3e3d3d;
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 var(--box-shadow);
+  }
+}
+
+.button {
+  @extend .linkBtn;
+}
