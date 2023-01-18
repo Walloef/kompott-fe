@@ -1,23 +1,6 @@
 .linkBtn {
-  // // color: var(--box-shadow);
-  // // font-family: var(--font-family-default);
-  // // text-decoration-color: var(--box-shadow);
-  // // text-decoration-thickness: 2px;
-
-  // text-shadow: 1px 1px var(--light-color), -1px 1px var(--light-color),
-  //   1px -1px var(--light-color), -1px -1px var(--light-color),
-  //   2px 2px var(--light-color), -2px 2px var(--light-color),
-  //   2px -2px var(--light-color), -2px -2px var(--light-color),
-  //   0 3px var(--light-color);
-  // font-family: var(--font-family-default);
-  // font-size: 3rem;
-  // position: relative;
-  // padding: 0 var(--spacing-default) var(--spacing-half);
-  // color: var(--box-shadow);
-  // text-decoration-style: dotted;
-  // text-underline-offset: var(--spacing-3-of-4);
-  // text-decoration-thickness: 4px;
-  // transition: all 0.25s ease;
+  --shadow-offset: calc(3rem / 16);
+  --shadow-offset-negative: calc(-1 * var(--shadow-offset));
 
   padding: var(--spacing-half) var(--spacing-default);
   font-family: var(--font-family-default);
@@ -26,24 +9,32 @@
   background-color: var(--box-shadow);
   color: rgba(251, 240, 219, 1);
   font-weight: bold;
-  text-shadow: 3px 3px #ec5152, -3px -3px var(--box-shadow),
-    -3px 3px var(--box-shadow), 3px -3px var(--box-shadow);
-  font-size: 1.5rem;
+  text-shadow: var(--shadow-offset) var(--shadow-offset) #ec5152,
+    var(--shadow-offset-negative) var(--shadow-offset-negative)
+      var(--box-shadow),
+    var(--shadow-offset-negative) var(--shadow-offset) var(--box-shadow),
+    var(--shadow-offset) var(--shadow-offset-negative) var(--box-shadow);
+  font-size: var(--font-size-lg);
   cursor: pointer;
   outline: none;
   text-decoration: none;
   transition: box-shadow 0.25s ease;
   border: 1px solid #ec5152;
   box-shadow: 0 0 #ec5152;
-  &:hover {
+  &:hover,
+  &:focus-visible {
     box-shadow: 4px 4px #ec5152;
     &:first-child {
       box-shadow: -4px 4px #ec5152;
     }
   }
+
+  @media (max-width: 50rem) {
+    font-size: var(--font-size-md);
+  }
 }
 
 .linkBtnMargin {
   @extend .linkBtn;
-  margin: 0 var(--spacing-default);
+  margin: 0 var(--spacing-default) var(--spacing-default);
 }

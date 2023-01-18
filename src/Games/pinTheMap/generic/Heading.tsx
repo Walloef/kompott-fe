@@ -1,8 +1,14 @@
-import style from '../style/heading.module.scss';
+import style from "../style/heading.module.scss";
 
-const Heading = ({ text }: { text: string }) => {
+const Heading = ({
+  text,
+  thinSpacing,
+}: {
+  text: string;
+  thinSpacing?: boolean;
+}) => {
   return (
-    <h1 className={style.header}>
+    <h1 className={thinSpacing ? style.headerThinSpacing : style.header}>
       <span className={style.noDots}>{text}</span>
       <span className={style.dots}>{text}</span>
     </h1>

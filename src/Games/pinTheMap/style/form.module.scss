@@ -1,10 +1,10 @@
-@import './linkBtn.scss';
+@import "./linkBtn.scss";
 
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 430px;
+  max-width: calc(600rem / 16);
   margin: 0 auto;
 }
 
@@ -13,13 +13,18 @@
   width: calc(50% - var(--spacing-default));
   margin: var(--spacing-half) var(--spacing-half) var(--spacing-default);
   font-family: var(--font-family-default);
+  font-size: var(--font-size-lg);
   color: #3e3d3d;
   text-align: center;
   border: 1px solid var(--box-shadow);
   background: none;
   box-shadow: 4px 4px var(--box-shadow);
-  transition: all 0.5s ease;
+  transition: box-shadow 0.5s ease;
   outline: none;
+
+  @media (max-width: 50rem) {
+    font-size: var(--font-size-md);
+  }
 
   &:first-child {
     box-shadow: -4px 4px var(--box-shadow);

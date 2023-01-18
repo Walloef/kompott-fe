@@ -19,7 +19,8 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
-<style is:global>
+
+<style lang="scss" is:global>
 	@import url("https://fonts.googleapis.com/css2?family=Paytone+One&display=swap");
 	*::after,*::before,* {
 		margin: 0;
@@ -27,18 +28,38 @@ const { title } = Astro.props;
 		box-sizing: border-box;
 	}
 
+	
+
 	:root {
 		--light-color: #fbf0da;
 		--box-shadow: #f78686;
 		--thin-shadow: #f45d5d;
-		--heading-size: 5rem;		/*  15rem; */
-		--spacing-default: 24px;
+		--spacing-default: calc(24rem / 16);
   	--spacing-half: calc(var(--spacing-default) / 2);
   	--spacing-3-of-4: calc(var(--spacing-default) + var(--spacing-half));
   	--spacing-double: calc(var(--spacing-default) * 2);
   	--spacing-quater: calc(var(--spacing-default) / 4);
 		--font-family-default: 'Paytone One', sans-serif;
+		--font-size-sm: clamp(0.8rem, -0.11vw + 0.83rem, 0.74rem);
+		--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+		--font-size-md: clamp(1.25rem, 1.18vw + 0.95rem, 1.9rem);
+		--font-size-lg: clamp(1.56rem, 2.69vw + 0.89rem, 3.04rem);
+		--font-size-xl: clamp(1.95rem, 5.29vw + 0.63rem, 4.86rem);
+		--font-size-xxl: clamp(2.44rem, 9.71vw + 0.01rem, 7.78rem);
+		--font-size-xxxl: clamp(3.05rem, 16.09vw + -1.22rem, 12.45rem);
+		--font-xxxl-margin: calc(150rem / 16);
+
+		@media screen and (max-width: 568px) {
+			--heading-size: 3rem;
+		}
 	}
+
+	@media screen and (min-width: 568px) {
+			:root {
+				--font-size: 
+			}
+		}
+
 	main {
 		height: 100vh;
 	}
