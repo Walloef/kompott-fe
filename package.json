@@ -15,14 +15,15 @@
     "@types/react": "^18.0.21"
   },
   "dependencies": {
-    "@astrojs/react": "^1.2.1",
-    "@astrojs/vue": "^1.2.1",
+    "@astrojs/react": "^2.0.0",
+    "@astrojs/sitemap": "^1.0.0",
+    "@astrojs/vue": "^2.0.0",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@microsoft/signalr": "^7.0.0",
     "@nanostores/react": "^0.4.0",
     "@nanostores/vue": "^0.6.0",
     "@react-google-maps/api": "^2.17.1",
-    "astro": "^1.5.2",
+    "astro": "^2.0.0",
     "nanostores": "^0.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
