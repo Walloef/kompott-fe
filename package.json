@@ -15,12 +15,10 @@
     "@types/react": "^18.0.21"
   },
   "dependencies": {
-    "@astrojs/preact": "^1.2.0",
     "@astrojs/react": "^1.2.1",
     "@astrojs/vue": "^1.2.1",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@microsoft/signalr": "^7.0.0",
-    "@nanostores/preact": "^0.3.1",
     "@nanostores/react": "^0.4.0",
     "@nanostores/vue": "^0.6.0",
     "@react-google-maps/api": "^2.17.1",

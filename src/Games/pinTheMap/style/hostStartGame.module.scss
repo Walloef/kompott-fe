@@ -4,3 +4,52 @@
   text-align: center;
   color: var(--thin-shadow);
 }
+
+.playerWrapper {
+  max-width: 1200px;
+  position: relative;
+}
+
+.children {
+  position: absolute;
+  height: 150px;
+  width: 33%;
+}
+
+.child {
+  @extend .children;
+  // Make nth-child into class name that can be saved in array and randomly selected when player is joining
+  &:nth-child(1) {
+    background: rebeccapurple;
+    top: 0;
+    left: 0;
+  }
+  &:nth-child(2) {
+    background: gold;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &:nth-child(3) {
+    background: tomato;
+    top: 0;
+    right: 0;
+  }
+
+  &:nth-child(4) {
+    background: tomato;
+    top: 150px;
+    left: 0;
+  }
+  &:nth-child(5) {
+    background: gold;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &:nth-child(6) {
+    background: rebeccapurple;
+    top: 150px;
+    right: 0;
+  }
+}

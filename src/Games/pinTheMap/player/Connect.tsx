@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { connectPlayer } from '../../../connections/ptm/playerSocket';
-import Heading from '../generic/Heading';
-import formStyle from '../style/form.module.scss';
+import { useState } from "react";
+import { connectPlayer } from "../../../connections/ptm/playerSocket";
+import Heading from "../generic/Heading";
+import formStyle from "../style/form.module.scss";
 
 const Connect = () => {
-  const [playerName, setPlayerName] = useState('');
-  const [gameId, setGameId] = useState('');
+  const [playerName, setPlayerName] = useState("");
+  const [gameId, setGameId] = useState("");
   const onsubmit = () => {
     console.table({ playerName, gameId });
     connectPlayer(playerName, gameId);
@@ -30,8 +30,8 @@ const Connect = () => {
           placeholder="game id"
           inputMode="numeric"
           pattern="[0-9]*"
-          minLength={4}
-          maxLength={4}
+          minLength={5}
+          maxLength={5}
           type="text"
           className={formStyle.input}
           value={gameId}

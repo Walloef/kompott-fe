@@ -12,11 +12,15 @@ const StartGame = ({ gameId }: { gameId: string | undefined }) => {
       <p className={style.gameId}>{gameId}</p>
       {gameObj.players && gameObj.players.map((x) => <p>{x}</p>)}
 
-      {["Benju", "Banei", "Nasom", "Kralle", "Ninjagrisen", "Märta"].map(
-        (x, idx) => (
-          <p key={idx}>{x}</p>
-        )
-      )}
+      <div className={style.playerWrapper}>
+        {[1, 2, 3, 4, 5, 6].map((x, idx) => {
+          return (
+            <p className={style.child} key={x}>
+              {x}
+            </p>
+          );
+        })}
+      </div>
       <button
         onClick={() => {
           updateGameState({
