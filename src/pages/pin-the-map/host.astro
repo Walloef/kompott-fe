@@ -6,8 +6,22 @@ import "../../Games/pinTheMap/style/default.scss";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
+  <main class="scale">
     <Host client:load />
   </main>
   <SvgEarth />
 </Layout>
+
+<style lang="scss">
+  .scale {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    height: 1050px;
+    width: 1300px;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    will-change: transform;
+    transition: all 0.15s ease-in;
+  }
+</style>

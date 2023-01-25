@@ -8,10 +8,12 @@ import { game } from "../../../store/ptnStore";
 import { HOST_VIEWS } from "../../../helpers/constants/ptm";
 import { useEffect } from "react";
 import { connectHost } from "../../../connections/ptm/hostSocket";
+import resizeView from "../../../helpers/resizeView";
 
 const Index = () => {
   useEffect(() => {
     connectHost();
+    resizeView();
   }, []);
 
   const gameObj = useStore(game);
