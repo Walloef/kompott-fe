@@ -22,6 +22,7 @@ const Connect = () => {
         <input
           placeholder="name"
           type="text"
+          maxLength={11}
           className={formStyle.input}
           value={playerName}
           onChange={(e) => setPlayerName(e.target.value)}

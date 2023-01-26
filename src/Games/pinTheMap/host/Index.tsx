@@ -20,7 +20,6 @@ const Index = () => {
 
   return (
     <>
-      <p>{gameObj.hostView}</p>
       {gameObj.hostView === HOST_VIEWS.FINAL_SCORE ? <FinalScore /> : null}
 
       {gameObj.hostView === HOST_VIEWS.GUESSING ? <Guessing /> : null}
