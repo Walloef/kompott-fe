@@ -66,7 +66,6 @@ export function addPlayer(newPlayer: string) {
     ...game.get(),
     players,
   });
-  console.log("currPlayers", currPlayers);
 }
 
 export function updateGameState(payload: Game) {

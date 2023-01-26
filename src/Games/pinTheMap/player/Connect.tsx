@@ -13,11 +13,6 @@ const Connect = () => {
   return (
     <div className="wrapper">
       <Heading text="pin the map" />
-      {/* <p>
-        hej
-        {gameId}
-        {playerName}
-      </p> */}
       <div className={formStyle.wrapper}>
         <input
           placeholder="name"
