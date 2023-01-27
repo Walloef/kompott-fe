@@ -1,6 +1,6 @@
 import { debounce } from "./debounce";
 
-const resizeView = () => {
+const resizeView = (firstRun = false) => {
   const scaleWrapper = document.querySelector<HTMLElement>(".scale");
   if (scaleWrapper === null) {
     console.warn("scaleWrapper is not set");
@@ -18,7 +18,7 @@ const resizeView = () => {
     },
   };
 
-  const myEfficientFn = debounce(function () {
+  const resize = debounce(function () {
     sizes.currentSize = {
       width: documentBody.getBoundingClientRect().width,
       height: documentBody.getBoundingClientRect().height,
@@ -37,10 +37,13 @@ const resizeView = () => {
       "style",
       `transform: translate(-50%, -50%) scale(${scale})`
     ); //`transform: translate(-50%, -50%) scale(${scale})`)
-    console.log(scale);
+
     document.querySelector(".blur")?.classList.remove("show");
   }, 250);
-  window.addEventListener("resize", myEfficientFn);
+  if (firstRun) {
+    resize();
+  }
+  window.addEventListener("resize", resize);
   window.addEventListener("resize", () => {
     document.querySelector(".blur")?.classList.add("show");
   });

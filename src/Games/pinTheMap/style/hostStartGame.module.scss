@@ -25,7 +25,7 @@
 
 .child {
   @extend .children;
-  opacity: 0;
+  // opacity: 0;
   // Make nth-child into class name that can be saved in array and randomly selected when player is joining
   &:nth-child(1) {
     top: 0;

@@ -13,7 +13,7 @@ import resizeView from "../../../helpers/resizeView";
 const Index = () => {
   useEffect(() => {
     connectHost();
-    resizeView();
+    resizeView(true);
   }, []);
 
   const gameObj = useStore(game);

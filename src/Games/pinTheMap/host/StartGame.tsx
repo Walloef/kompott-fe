@@ -6,24 +6,25 @@ import gsap from "gsap";
 
 const StartGame = ({ gameId }: { gameId: string | undefined }) => {
   const gameObj = useStore(game);
-  const tl = gsap.timeline();
+  // const tl = gsap.timeline();
 
   const animate = (selector: string) => {
-    setTimeout(() => {
-      tl.to(`[${selector}]`, {
-        duration: 0,
-        delay: 0.2,
-        ease: "bounce.out",
-        scale: "0",
-        opacity: "1",
-      });
+    console.log(selector);
+    // setTimeout(() => {
+    //   tl.to(`[${selector}]`, {
+    //     duration: 0,
+    //     delay: 0.2,
+    //     ease: "bounce.out",
+    //     scale: "0",
+    //     opacity: "1",
+    //   });
 
-      tl.to(`[${selector}]`, {
-        duration: 1.5,
-        ease: "bounce.out",
-        scale: "1",
-      });
-    }, 2);
+    //   tl.to(`[${selector}]`, {
+    //     duration: 1.5,
+    //     ease: "bounce.out",
+    //     scale: "1",
+    //   });
+    // }, 2);
   };
 
   return (
