@@ -15,7 +15,6 @@ const Index = () => {
 
   return (
     <>
-      {/* <Guessing /> */}
       {gameObj.playerView === PLAYER_VIEWS.CONNECT && <Connect />}
       {gameObj.playerView === PLAYER_VIEWS.FINAL_SCORE && <FinalScore />}
       {gameObj.playerView === PLAYER_VIEWS.GUESSING && <Guessing />}

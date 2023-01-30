@@ -1,23 +1,7 @@
 import { atom } from "nanostores";
 import { HOST_VIEWS, PLAYER_VIEWS } from "../helpers/constants/ptm";
 
-// export type Game = {
-//   gameId: string,
-//   firstPlayer: false,
-//   firstPlayerName: "",
-//   players: Array<any>,
-//   playerState: string,
-//   hostState: string,
-//   playerName: string,
-//   timer: 0,
-//   timerId: 0,
-//   city: string,
-//   score: Array<any>,
-//   finalScore: Array<any>,
-//   error: string,
-// };
-
-export type Game = {
+type NewType = {
   hostView?: string;
   playerView?: string;
   city?: string;
@@ -32,10 +16,10 @@ export type Game = {
   firstPlayerName?: string;
   error?: string;
   gameId?: string;
+  waitingView?: string;
 };
 
-// export const ptmHostView = atom(HOST_VIEWS.START_GAME);
-// export const ptmPlayerView = atom(PLAYER_VIEWS.START_GAME);
+export type Game = NewType;
 
 export const game = atom<Game>({
   hostView: HOST_VIEWS.START_GAME,
@@ -48,15 +32,8 @@ export const game = atom<Game>({
   firstPlayer: false,
   players: undefined,
   gameId: "",
+  waitingView: "",
 });
-
-// export function updateGameView(type: "HOST" | "PLAYER", view: string) {
-//   if (type === "HOST") {
-//     ptmHostView.set(view);
-//   } else {
-//     ptmPlayerView.set(view);
-//   }
-// }
 
 export function addPlayer(newPlayer: string) {
   const currPlayers = game.get().players;
@@ -69,8 +46,6 @@ export function addPlayer(newPlayer: string) {
 }
 
 export function updateGameState(payload: Game) {
-  console.log(game.get());
-  console.log(payload);
   if (game.get().round! > 0) {
     game.set({
       ...game.get(),

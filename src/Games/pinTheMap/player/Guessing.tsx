@@ -2,7 +2,11 @@ import { useMemo, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { sendServer } from "../../../connections/ptm/invoker";
 import { useStore } from "@nanostores/react";
-import { game } from "../../../store/ptnStore";
+import { game, updateGameState } from "../../../store/ptnStore";
+import marker from "../images/marker.svg";
+import Button from "../generic/Button";
+import CenterWrapper from "../generic/CenterWrapper";
+import { PLAYER_VIEWS, WAITING_VIEWS } from "../../../helpers/constants/ptm";
 
 const styles = [
   {
@@ -24,22 +28,10 @@ const styles = [
   },
   {
     featureType: "administrative.country",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#a79a20",
-      },
-      {
-        visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "administrative.country",
     elementType: "geometry.stroke",
     stylers: [
       {
-        color: "#726d40",
+        color: "#f0e4cd",
       },
       {
         visibility: "on",
@@ -58,7 +50,25 @@ const styles = [
     ],
   },
   {
+    featureType: "administrative.land_parcel",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
     featureType: "landscape.man_made",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "landscape.man_made",
+    elementType: "labels.icon",
     stylers: [
       {
         visibility: "off",
@@ -69,10 +79,19 @@ const styles = [
     featureType: "landscape.natural",
     stylers: [
       {
-        color: "#1ddd67",
+        color: "#f78686",
       },
       {
         visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "landscape.natural",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
       },
     ],
   },
@@ -109,6 +128,24 @@ const styles = [
       },
     ],
   },
+  {
+    featureType: "water",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#fbf0da",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
 ];
 
 export default function Home() {
@@ -124,16 +161,21 @@ export default function Home() {
     latitude: 0,
     longitude: 0,
   });
-  const setPin = (latLng: google.maps.LatLng | null): void => {
+
+  const setPin = (latLng: google.maps.LatLng | null) => {
     if (latLng) {
       setLatLang({ latitude: latLng.lat(), longitude: latLng.lng() });
+      setGuessMade(true);
     }
   };
 
   const guess = () => {
-    setGuessMade(true);
     if (gameObj.gameId) {
       sendServer(gameObj.gameId, "Guess", JSON.stringify(latLang));
+      updateGameState({
+        playerView: PLAYER_VIEWS.WAITING,
+        waitingView: WAITING_VIEWS.PLAYERS_STILL_GUESSING,
+      });
     }
   };
 
@@ -154,82 +196,23 @@ export default function Home() {
           disableDefaultUI: true,
         }}
       >
-        <Marker position={{ lat: latLang.latitude, lng: latLang.longitude }} />
+        <Marker
+          icon={marker}
+          position={{ lat: latLang.latitude, lng: latLang.longitude }}
+        />
       </GoogleMap>
-      <button
-        style={{
-          position: "absolute",
-          bottom: 0,
-          background: "tomato",
-          zIndex: 999,
-        }}
-        onClick={guess}
-        id="guess"
-        disabled={guessMade}
-      >
-        Guess
-      </button>
+      {guessMade && (
+        <CenterWrapper
+          style={{
+            position: "fixed",
+            bottom: 0,
+            width: "100vw",
+            zIndex: 1,
+          }}
+        >
+          <Button onClick={guess} id="guess" text="Make Guess" />
+        </CenterWrapper>
+      )}
     </>
   );
 }
-
-// import {
-//   GoogleMap,
-//   useJsApiLoader,
-//   useLoadScript,
-// } from "@react-google-maps/api";
-// import { useCallback, useState } from "react";
-
-// const containerStyle = {
-//   width: "100vw",
-//   height: "100vh",
-// };
-
-// const center = {
-//   lat: -3.745,
-//   lng: -38.523,
-// };
-// const Guessing = () => {
-//   const { isLoaded } = useLoadScript({
-//     id: "google-map-script",
-//     googleMapsApiKey: "AIzaSyCRXvEwPNT-qbn3-rrLSnD-ti7jhchbXUI",
-//   });
-
-//   const [map, setMap] = useState<google.maps.Map | null>(null);
-
-//   const onLoad = useCallback(function callback(map: google.maps.Map) {
-//     // This is just an example of getting and using the map instance!!! don't just blindly copy!
-//     const bounds = new window.google.maps.LatLngBounds(center);
-//     map.fitBounds(bounds);
-
-//     setMap(map);
-//   }, []);
-
-//   const onUnmount = useCallback(function callback(map: google.maps.Map) {
-//     setMap(null);
-//   }, []);
-
-//   return isLoaded ? (
-//     <>
-//       <p>map</p>
-//       <GoogleMap
-//         mapContainerStyle={containerStyle}
-//         center={center}
-//         zoom={10}
-//         onLoad={onLoad}
-//         onUnmount={onUnmount}
-//         options={{
-//           disableDefaultUI: true,
-//           styles,
-//         }}
-//       >
-//         {/* Child components, such as markers, info windows, etc. */}
-//         <></>
-//       </GoogleMap>
-//     </>
-//   ) : (
-//     <>Loading</>
-//   );
-// };
-
-// export default Guessing;

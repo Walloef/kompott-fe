@@ -1,8 +1,14 @@
+import type { ButtonHTMLAttributes } from "react";
 import style from "../style/link.module.scss";
 
-const Button = ({ text, fn }: { text: string; fn: () => void }) => {
+type Props = {
+  text: string;
+  fn?: () => void;
+} & ButtonHTMLAttributes<HTMLElement>;
+const Button = ({ text, fn, ...rest }: Props) => {
+  console.log(fn);
   return (
-    <button className={style.linkMargin} onClick={() => fn()}>
+    <button {...rest} className={style.linkMargin}>
       {text}
     </button>
   );

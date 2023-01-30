@@ -15,4 +15,8 @@ const PLAYER_VIEWS = {
   SCORE: "score",
 };
 
-export { HOST_VIEWS, PLAYER_VIEWS };
+const WAITING_VIEWS = {
+  PLAYERS_STILL_GUESSING: "players-still-guessing",
+};
+
+export { HOST_VIEWS, PLAYER_VIEWS, WAITING_VIEWS };

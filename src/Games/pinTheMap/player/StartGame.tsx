@@ -25,7 +25,7 @@ const StartGame = () => {
       <p className={textStyle.discrete__decorated}>
         <i>Make sure everyone is in!</i>
       </p>
-      <Button text="Start game" fn={() => start()} />
+      <Button text="Start game" onClick={start} />
     </CenterWrapper>
   );
 };
