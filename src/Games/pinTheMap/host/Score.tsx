@@ -1,5 +1,15 @@
+import { useStore } from "@nanostores/react";
+import { game } from "../../../store/ptnStore";
+
 const Score = () => {
-  return <div>Score</div>;
+  const gameObj = useStore(game);
+
+  return (
+    <>
+      <pre>{JSON.stringify(gameObj)}</pre>
+      <div>Score</div>
+    </>
+  );
 };
 
 export default Score;

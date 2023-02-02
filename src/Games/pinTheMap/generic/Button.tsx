@@ -6,7 +6,6 @@ type Props = {
   fn?: () => void;
 } & ButtonHTMLAttributes<HTMLElement>;
 const Button = ({ text, fn, ...rest }: Props) => {
-  console.log(fn);
   return (
     <button {...rest} className={style.linkMargin}>
       {text}

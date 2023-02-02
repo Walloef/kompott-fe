@@ -9,6 +9,7 @@ type NewType = {
   oldScore?: number;
   finalScore?: any;
   players?: string[];
+  playersScore: Record<"id" | "oldScore" | "name", string | number>[];
   timer?: number;
   score?: number;
   name?: string;
@@ -31,18 +32,28 @@ export const game = atom<Game>({
   name: "",
   firstPlayer: false,
   players: undefined,
+  playersScore: [],
   gameId: "",
   waitingView: "",
 });
 
-export function addPlayer(newPlayer: string) {
+export function addPlayer(newPlayer: string, id: string) {
   const currPlayers = game.get().players;
+  const currentPlayersScore = game.get().playersScore;
   const players =
     currPlayers !== undefined ? [...currPlayers, newPlayer] : [newPlayer];
+  const playersScore =
+    currentPlayersScore.length > 0
+      ? [...currentPlayersScore, { id, name: newPlayer, oldScore: 0 }]
+      : [{ id, name: newPlayer, oldScore: 0 }];
+
   game.set({
     ...game.get(),
+    playersScore,
     players,
   });
+
+  console.log(game.get());
 }
 
 export function updateGameState(payload: Game) {

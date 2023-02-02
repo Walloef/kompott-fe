@@ -23,7 +23,7 @@ const resizeView = (firstRun = false) => {
       width: documentBody.getBoundingClientRect().width,
       height: documentBody.getBoundingClientRect().height,
     };
-    // console.log(sizes)
+
     const scale = Math.min(
       sizes.currentSize.width / sizes.originalSize.width,
       sizes.currentSize.height / sizes.originalSize.height

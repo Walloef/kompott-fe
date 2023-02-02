@@ -22,7 +22,8 @@ export function connectHost() {
   window.connection.on("ClientMessage", (event: any) => {
     switch (event.name) {
       case "Connected":
-        addPlayer(event.payload.name);
+        console.log(event.payload.id);
+        addPlayer(event.payload.name, event.payload.id);
         break;
       case "StateUpdate":
         updateGameState({ hostView: event.payload });
