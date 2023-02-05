@@ -3,7 +3,16 @@ import {
   HttpTransportType,
   HubConnection,
 } from "@microsoft/signalr";
-import { addPlayer, game, updateGameState } from "../../store/ptnStore";
+import {
+  addPlayer,
+  changeView,
+  game,
+  playerGuessed,
+  resetPlayerConnected,
+  setStringPayload,
+  setTimer,
+  updateGameState,
+} from "../../store/ptnStore";
 
 declare global {
   interface Window {
@@ -22,28 +31,32 @@ export function connectHost() {
   window.connection.on("ClientMessage", (event: any) => {
     switch (event.name) {
       case "Connected":
-        console.log(event.payload.id);
         addPlayer(event.payload.name, event.payload.id);
         break;
       case "StateUpdate":
-        updateGameState({ hostView: event.payload });
+        setStringPayload({ hostView: event.payload });
         break;
       case "Timer":
-        updateGameState({ timer: event.payload });
+        setTimer(event.payload);
         break;
       case "City":
-        updateGameState({ city: event.payload });
+        setStringPayload({ city: event.payload });
+        resetPlayerConnected();
         break;
       case "Score":
+        console.log(
+          "Score",
+          event.payload.scoreItems,
+          typeof event.payload.scoreItems
+        );
         updateGameState({ score: event.payload.scoreItems });
         break;
-
-      case "FinalScore":
-        updateGameState({ finalScore: event.payload });
+      case "PlayerGuessed":
+        playerGuessed({ name: "playerName", color: "#fff" });
         break;
 
       case "GameId":
-        updateGameState({ gameId: event.payload });
+        setStringPayload({ gameId: event.payload });
         break;
 
       case "Error":
@@ -51,7 +64,7 @@ export function connectHost() {
         window.connection.stop();
 
       default:
-        console.info("no case for");
+        console.info(`no case for ${event.name}`);
         break;
     }
   });

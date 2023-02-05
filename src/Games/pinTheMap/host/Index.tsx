@@ -9,6 +9,7 @@ import { HOST_VIEWS } from "../../../helpers/constants/ptm";
 import { useEffect } from "react";
 import { connectHost } from "../../../connections/ptm/hostSocket";
 import resizeView from "../../../helpers/resizeView";
+import style from "../style/host.module.scss";
 
 const Index = () => {
   useEffect(() => {
@@ -19,7 +20,8 @@ const Index = () => {
   const gameObj = useStore(game);
 
   return (
-    <>
+    <main id="scale" className={style.scale}>
+      {/* <Score /> */}
       {gameObj.hostView === HOST_VIEWS.FINAL_SCORE ? <FinalScore /> : null}
 
       {gameObj.hostView === HOST_VIEWS.GUESSING ? <Guessing /> : null}
@@ -28,7 +30,7 @@ const Index = () => {
         <StartGame gameId={gameObj.gameId} />
       ) : null}
       {gameObj.hostView === HOST_VIEWS.TIMER ? <Timer /> : null}
-    </>
+    </main>
   );
 };
 

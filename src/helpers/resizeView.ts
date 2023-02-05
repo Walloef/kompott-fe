@@ -1,7 +1,7 @@
 import { debounce } from "./debounce";
 
 const resizeView = (firstRun = false) => {
-  const scaleWrapper = document.querySelector<HTMLElement>(".scale");
+  const scaleWrapper = document.querySelector<HTMLElement>("#scale");
   if (scaleWrapper === null) {
     console.warn("scaleWrapper is not set");
     return;

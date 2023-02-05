@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { sendServer } from "../../../connections/ptm/invoker";
 import { useStore } from "@nanostores/react";
-import { game, updateGameState } from "../../../store/ptnStore";
+import { game, guessPlaced, updateGameState } from "../../../store/ptnStore";
 import marker from "../images/marker.svg";
 import Button from "../generic/Button";
 import CenterWrapper from "../generic/CenterWrapper";
@@ -172,7 +172,7 @@ export default function Home() {
   const guess = () => {
     if (gameObj.gameId) {
       sendServer(gameObj.gameId, "Guess", JSON.stringify(latLang));
-      updateGameState({
+      guessPlaced({
         playerView: PLAYER_VIEWS.WAITING,
         waitingView: WAITING_VIEWS.PLAYERS_STILL_GUESSING,
       });
