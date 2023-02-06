@@ -3,18 +3,13 @@ import {
   HttpTransportType,
   HubConnection,
 } from "@microsoft/signalr";
-import { PLAYER_VIEWS } from "../../helpers/constants/ptm";
-import { game, updateGameState } from "../../store/ptnStore";
+import { updateGameState } from "../../store/ptnStore";
 
 declare global {
   interface Window {
     connection: HubConnection;
   }
 }
-
-export const x = () => {
-  console.log("from store", game.get().hostView);
-};
 
 export function connectPlayer(name: string, gameId: string) {
   const url = `https://pinthemapbaseapp.azurewebsites.net/gamehub?name=${name}&gameid=${gameId}`;
@@ -26,21 +21,13 @@ export function connectPlayer(name: string, gameId: string) {
     .build();
 
   window.connection.on("ClientMessage", (event: any) => {
-    console.log(event);
+    console.log(event.payload);
     switch (event.name) {
       case "Connected":
         updateGameState({
           firstPlayer: event.payload.firstPlayer,
           gameId: gameId,
         });
-
-        if (event.payload.firstPlayer) {
-          updateGameState({
-            firstPlayer: event.payload.firstPlayer,
-            playerView: PLAYER_VIEWS.WAITING,
-            gameId: gameId,
-          });
-        }
         break;
       case "StateUpdate":
         updateGameState({

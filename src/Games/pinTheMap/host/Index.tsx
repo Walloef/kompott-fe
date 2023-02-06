@@ -21,7 +21,6 @@ const Index = () => {
 
   return (
     <main id="scale" className={style.scale}>
-      {/* <Score /> */}
       {gameObj.hostView === HOST_VIEWS.FINAL_SCORE ? <FinalScore /> : null}
 
       {gameObj.hostView === HOST_VIEWS.GUESSING ? <Guessing /> : null}

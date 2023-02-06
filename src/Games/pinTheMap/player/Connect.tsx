@@ -6,10 +6,11 @@ import formStyle from "../style/form.module.scss";
 const Connect = () => {
   const [playerName, setPlayerName] = useState("");
   const [gameId, setGameId] = useState("");
+
   const onsubmit = () => {
-    console.table({ playerName, gameId });
     connectPlayer(playerName, gameId);
   };
+
   return (
     <div className="wrapper">
       <Heading text="pin the map" />

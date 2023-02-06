@@ -1,6 +1,11 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import CenterWrapper from "../generic/CenterWrapper";
 import marker from "../images/marker.svg";
+import marker2 from "../images/marker2.svg";
+import marker3 from "../images/marker3.svg";
+import marker4 from "../images/marker4.svg";
+import marker5 from "../images/marker5.svg";
+import marker6 from "../images/marker6.svg";
 
 const styles = [
   {
@@ -163,7 +168,36 @@ export default function Home() {
           disableDefaultUI: true,
         }}
       >
-        <Marker icon={marker} position={{ lat: 0, lng: 0 }} />
+        <Marker
+          animation={google.maps.Animation.DROP}
+          icon={marker}
+          position={{ lat: 0, lng: 0 }}
+        />
+        <Marker
+          animation={google.maps.Animation.DROP}
+          icon={marker2}
+          position={{ lat: 20, lng: 20 }}
+        />
+        <Marker
+          animation={google.maps.Animation.DROP}
+          icon={marker3}
+          position={{ lat: 22, lng: 22 }}
+        />
+        <Marker
+          animation={google.maps.Animation.DROP}
+          icon={marker4}
+          position={{ lat: 40, lng: 40 }}
+        />
+        <Marker
+          animation={google.maps.Animation.DROP}
+          icon={marker5}
+          position={{ lat: 50, lng: 50 }}
+        />
+        <Marker
+          animation={google.maps.Animation.DROP}
+          icon={marker6}
+          position={{ lat: 60, lng: 60 }}
+        />
       </GoogleMap>
     </>
   );
