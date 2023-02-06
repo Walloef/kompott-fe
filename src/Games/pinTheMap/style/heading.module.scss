@@ -1,14 +1,18 @@
-.header {
+@mixin header() {
   position: relative;
   padding: 4rem 0 var(--font-xxxl-margin);
   text-align: center;
   font-family: var(--font-family-default);
   font-size: var(--font-size-xxxl);
-  font-size: 12.45rem;
+  font-size: var(--font-size-xxxl);
+}
+
+.header {
+  @include header;
 }
 
 .headerThinSpacing {
-  @extend .header;
+  @include header;
   padding: 4rem 0 calc(50rem / 16);
 }
 
